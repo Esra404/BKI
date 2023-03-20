@@ -1,1 +1,1 @@
-<?php echo "Merhaba Esrga" ?>
+<?php echo "Merhabas Esrga" ?>
