@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +15,7 @@
   
     <div class="col-sm-10 align-right">
 	<hr>
-      <h1 class="text-secondary " style="color: rgb(255, 255, 255);">BEDEN KÜTLE İNDEKSİ HESAPLAMA</h1>
+      <h1 class="text-secondary " style="color:chartreuse;">BEDEN KÜTLE İNDEKSİ HESAPLAMA</h1>
 	  <hr>
     </div>
 	
@@ -46,11 +45,48 @@
         </div>
       </div>
     </form>
-    <div class="row">
+    <div class="row"></div>
       <div class="col-sm-2"></div>
       <div class="col-sm-10 align-right">
+      <?php 
+      function calculate($uzunluk , $kilo){
+        $index = ($kilo / $uzunluk / $uzunluk) *10000;
+        $bmiRounded = round($index ,1);
+         if($index <=18.5){
+         
+          echo "<h2>Boy Kütle index sonucunuz : " . $bmiRounded . " Bu değere göre zayifsiniz lütfen dengeli ve sağlilkli bir şekilde beslenin </h2>";
+          
+          }
+          elseif($index >18.5 && $index<=24.99){
+            echo "<h2>Boy Kütle index sonucunuz : " . $bmiRounded . " Bu değere göre normal kilonuzdasiniz tedbiri elden birakmamak gerekir sağlikli yaşamlar ... </h2>";
+
+          }
+          elseif($index >25 && $index<=29.99 ){
+            echo "<h2>Boy Kütle index sonucunuz : " . $bmiRounded . " Bu değere göre fazla kilolusunuz lütfen sağlikli bir yaşam için az ve dengeli beslenin </h2>";
+
+          }
+          else{
+            echo "<h2>Boy Kütle index sonucunuz : " . $bmiRounded . " Bu değere göre obezsiniz lütfen sağlikli bir yaşam için az ve dengeli beslenin </h2>";
+         }
+        
+         
+    if(isset($_POST['Hesapla'])){
+      if(!isset($uzunluk)){
+       echo "Lütfen bir değer giriniz";
+      }
+      if(!isset($kilo)){
+      echo "Lütfen bir değer giriniz";
       
-  
+      }
+  } 
+        }
+        $uzunluk =  filter_var(htmlentities(floatval($_POST['BoyUzunluğu'])),FILTER_SANITIZE_NUMBER_FLOAT);
+        $kilo =  filter_var(htmlentities(floatval($_POST['Kilo'])),FILTER_SANITIZE_NUMBER_FLOAT);
+
+        calculate($uzunluk, $kilo);
+    
+    ?>
+    
     </div>
     </div>
   </div>
